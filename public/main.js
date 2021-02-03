@@ -37,3 +37,4 @@ delete_button.addEventListener('click', _ => {
            }
        })
 });
+//TODO - remove main directory from git, uneeded

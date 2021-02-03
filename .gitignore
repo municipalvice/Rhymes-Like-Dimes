@@ -1,7 +1,8 @@
 # others to ignore
-.DS_Store
-.idea
-/misc
+.DS_Store/
+.idea/
+misc/
+main/
 
 #Mongo Config
 config.js
