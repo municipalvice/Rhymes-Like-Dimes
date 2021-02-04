@@ -8,21 +8,17 @@ MongoClient.connect(MongoConnection.mongo.connection, {
     useUnifiedTopology: true })
     .then( client => {
 
+        app.set('view engine', 'ejs');
         console.log("Connection to scarifdb established.");
 
         const db = client.db('star-wars-quotes');
         const quotes = db.collection('quotes');
 
-        app.set('view engine', 'ejs');
-
         app.use(bodyParser.urlencoded({ extended: true}));
-        app.use(express.static('public'));
         app.use(bodyParser.json());
+        app.use(express.static(__dirname + '/public/'));
 
-        app.listen(3000, function () {
-            console.log('Listening on port 3000');
-            console.log('The server is up!');
-        });
+
 
         // Fix: Unresolved function or method get()
         app.get('/', (request, response) => {
@@ -33,7 +29,7 @@ MongoClient.connect(MongoConnection.mongo.connection, {
                     // console.log(result);
                 })
                 .catch(error => console.error(error));
-            console.log("Current directory: " + __dirname);
+            // console.log("Current directory: " + __dirname);
         });
         app.post('/quotes', (request, response) => {
             quotes.insertOne(request.body)
@@ -69,5 +65,10 @@ MongoClient.connect(MongoConnection.mongo.connection, {
                 })
                 .catch(error => console.log(error));
         })
+
+        app.listen(3000, function () {
+            console.log('Listening on port 3000');
+            console.log('The server is up!');
+        });
     })
     .catch( error => { console.error(error) });

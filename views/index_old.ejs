@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Runner - Favorite Quotes</title>
+</head>
+<body>
+    <h1>Add one of your favorite quotes below:</h1>
+
+    <form action="/quotes" method="POST">
+        <input type="text" placeholder="name" name="name">
+        <input type="text" placeholder="quote" name="quote">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Quotes</h2>
+    <ul class="quotes">
+        <% for (var i = 0; i < quotes.length; i++) {%>
+            <li class="quote">
+                <span><%= quotes[i].name %></span>
+                <span><%= quotes[i].quote %></span>
+            </li>
+        <% } %>
+    </ul>
+
+    <div>
+        <h2>Replace Quotes</h2>
+
+        <p>Replace first quote with another author</p>
+        <button id="update-button">Replace Quote</button>
+    </div>
+
+    <div>
+        <h2>Remove All Vader Quotes</h2>
+        <div id="message"></div>
+        <button id="delete-button">Remove Vader</button>
+
+    </div>
+
+    <script src="/main.js"></script>
+</body>
+</html>

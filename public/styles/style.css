@@ -1,0 +1,29 @@
+body {
+    background: black;
+}
+#tv-tube{
+    content: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    border-radius: 100px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+#start-button-wrapper{
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+#start-button {
+    font-size: 22pt;
+    font-kerning: auto;
+    height: 50px;
+    width: 180px;
+    margin: 0 auto;
+    background-color: rebeccapurple;
+    border: none;
+    border-radius: 10pt;
+}
