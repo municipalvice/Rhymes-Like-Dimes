@@ -1,29 +1,48 @@
 body {
     background: black;
 }
+iframe {
+    border-radius: 15%;
+}
 #tv-tube{
-    content: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");
+    /*content: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");*/
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
-    border-radius: 100px;
-    margin: 0 auto;
-    padding: 1em;
+    border: ghostwhite solid 2px;
+    border-radius: 15%;
+    margin: 30px auto;
+    height: 752px;
+    width: 998px;
 }
-
-#start-button-wrapper{
+#start-console{
     width: 100%;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
-    padding-top: 30px;
+    padding: 0;
 }
 #start-button {
     font-size: 22pt;
     font-kerning: auto;
-    height: 50px;
-    width: 180px;
+    color: white;
+    height: 75px;
+    width: 500px;
     margin: 0 auto;
-    background-color: rebeccapurple;
+    padding: 0;
+    background-color: #551C6A;
     border: none;
     border-radius: 10pt;
+}
+.dial {
+    height: 75px;
+    width: 75px;
+    border: solid #551C6A 8px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+#channel-dial {
+    margin-left: 130px;
+}
+#volume-dial {
+    margin-right: 130px;
 }

@@ -1,6 +1,6 @@
 const update = document.querySelector('#update-button');
 const delete_button = document.querySelector('#delete-button');
-const delete_message = document.querySelector('#message')
+const delete_message = document.querySelector('#message');
 
 update.addEventListener('click', _ => {
     fetch('/quotes', {
