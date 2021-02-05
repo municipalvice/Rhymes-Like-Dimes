@@ -4,27 +4,25 @@ body {
 }
 iframe {
     border-radius: 15%;
+    border: solid 2px white;
 }
-#tv-tube{
+#tv-tube {
     /*content: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");*/
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
-    border: ghostwhite solid 2px;
     border-radius: 15%;
     margin: 30px auto;
     height: 752px;
     width: 998px;
 }
-#start-console{
+#start-console {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 0;
-    padding: 0;
 }
 #start-button {
-    font-size: 22pt;
+    font-size: 3rem;
     font-kerning: auto;
     color: white;
     height: 5rem;
@@ -36,15 +34,15 @@ iframe {
     border-radius: 10pt;
 }
 .dial {
-    height: 75px;
-    width: 75px;
-    border: solid #551C6A 8px;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
-    margin: 0 auto;
 }
 #channel-dial {
-    margin-left: 130px;
+    margin-left: 10rem;
+    transform: rotate(-25deg);
 }
 #volume-dial {
-    margin-right: 130px;
+    margin-right: 10rem;
+    transform: rotate(45deg);
 }
