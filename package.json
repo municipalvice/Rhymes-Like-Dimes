@@ -4,7 +4,7 @@
   "description": "CRUD refresher speed run. Built using Node.JS, Express, MongoDB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +13,8 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.3"
+  },
+  "devDependencies": {
+    "jasmine": "^3.6.4"
   }
 }

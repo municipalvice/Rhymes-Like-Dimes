@@ -1,5 +1,6 @@
 body {
     background: black;
+    font-size: 62.5%;
 }
 iframe {
     border-radius: 15%;
@@ -19,14 +20,15 @@ iframe {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 0;
     padding: 0;
 }
 #start-button {
     font-size: 22pt;
     font-kerning: auto;
     color: white;
-    height: 75px;
-    width: 500px;
+    height: 5rem;
+    width: 30rem;
     margin: 0 auto;
     padding: 0;
     background-color: #551C6A;

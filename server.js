@@ -8,7 +8,7 @@ MongoClient.connect(MongoConnection.mongo.connection, {
     useUnifiedTopology: true })
     .then( client => {
 
-        app.set('view engine', 'ejs');
+        app.set('view-engine', 'ejs');
         console.log("Connection to scarifdb established.");
 
         const db = client.db('star-wars-quotes');
@@ -17,8 +17,6 @@ MongoClient.connect(MongoConnection.mongo.connection, {
         app.use(bodyParser.urlencoded({ extended: true}));
         app.use(bodyParser.json());
         app.use(express.static(__dirname + '/public/'));
-
-
 
         // Fix: Unresolved function or method get()
         app.get('/', (request, response) => {
