@@ -22,7 +22,7 @@ body {
     /*background-repeat: no-repeat;*/
     /*background-position: center;*/
     border-radius: 20%;
-    border: solid 2px white;
+    border: solid 3px #551C6A;
 }
 #player {
     position: absolute;
@@ -96,4 +96,7 @@ body {
 #volume-dial {
     margin-right: 5rem;
     transform: rotate(115deg);
+}
+#speaker {
+    margin: 0rem 3.5rem;
 }
