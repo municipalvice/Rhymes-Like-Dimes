@@ -17,6 +17,15 @@ const doom_videos = [
     }, {
         shortCode:"Pb1E5XNheqw",
         songName:"Questions"
+    }, {
+        shortCode: "h69FSgua80A",
+        songName: "One Beer"
+    }, {
+        shortCode: "uSxlZQUqVPY",
+        songName: "Strange Ways"
+    }, {
+        shortCode: "Ga-R6mxI5X4",
+        songName: "MM.. FOOD The Movie (Part 1)"
     }
 ];
 
