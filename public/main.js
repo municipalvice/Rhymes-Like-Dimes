@@ -17,28 +17,31 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //         songName:"Questions"
 //     }
 // ];
-
+var state;
 var player;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         videoId: 'CRHyBwNtkLA',
         events: {
-            'onStateChange': showNoSignal
+            'onStateChange': getState
         }
     });
 }
 
-function showNoSignal() {
-    //TODO: when player is stopped/paused, show no signal image
+function getState() {
+    state = player.getPlayerState();
 }
-function startVideo() {
+function playVideo(){
     player.playVideo();
-}
-function stopVideo() {
-    player.stopVideo();
 }
 
 start_button.addEventListener('click', _ => {
-    startVideo();
+    if (start_button.innerHTML === 'S T A R T') {
+        playVideo();
+        start_button.innerHTML = 'S T O P';
+    } else {
+        player.pauseVideo();
+        start_button.innerHTML = 'S T A R T';
+    }
 });
