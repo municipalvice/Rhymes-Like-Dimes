@@ -1,39 +1,48 @@
-const update = document.querySelector('#update-button');
-const delete_button = document.querySelector('#delete-button');
-const delete_message = document.querySelector('#message');
+var tag = document.createElement('script');
 
-update.addEventListener('click', _ => {
-    fetch('/quotes', {
-        method: 'put',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({
-            name: 'Darth Vader',
-            quote: 'I find your lack of faith disturbing.'
-        })
-    })
-        .then(result => {
-            if (result.ok) return result.json();
-        })
-        .then(response => {
-            window.location.reload(true);
-        })
-});
-delete_button.addEventListener('click', _ => {
-   fetch('/quotes', {
-       method: 'delete',
-       headers: {'Content-Type': 'application/json'},
-       body: JSON.stringify({
-           name: 'Darth Vader'
-       })
-   })
-       .then( result => {
-           if (result.ok) return result.json();
-       })
-       .then(response => {
-           if (response === "No More Vader") {
-               delete_message.textContent = "No More Vader Quotes";
-           } else {
-               window.location.reload(true);
-           }
-       })
-});
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// const doom_videos = [
+//     {
+//         shortCode:"CRHyBwNtkLA",
+//         songName:"Doomsday",
+//     },{
+//         shortCode: "rpaonSDPw7Y",
+//         songName: "Accordion"
+//     }, {
+//         shortCode:"Pb1E5XNheqw",
+//         songName:"Questions"
+//     }
+// ];
+
+var player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        videoId: 'CRHyBwNtkLA',
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+
+var done = false;
+
+function onPlayerStateChange(event){
+    if (event.data == YT.PlayerState.PLAYING && !done){
+        setTimeout(stopVideo, 6000);
+        done = true;
+    }
+}
+
+function onPlayerReady() {
+    event.target.playVideo()
+}
+
+function stopVideo() {
+    player.stopVideo();
+}

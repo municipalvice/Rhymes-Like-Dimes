@@ -1,12 +1,14 @@
 body {
+    background: black;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 
-    background: black;
+    font-family: 'Roboto Mono', monospace;
     font-size: 62.5%;
+
     padding: 3rem 0rem;
-    max-width: 200rem;
+    max-width: 60rem;
 }
 #tv-tube {
     display: inline-flex;
@@ -14,16 +16,15 @@ body {
     justify-content: center;
     padding-top: 70%;
     height: 0;
-    border: none;
     margin: 0rem 3rem;
     overflow: hidden;
-    /*content: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");*/
+    /*!*background-image: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");*!*/
     /*background-repeat: no-repeat;*/
     /*background-position: center;*/
     border-radius: 20%;
     border: solid 2px white;
 }
-iframe {
+#player {
     position: absolute;
     top: 0%;
     left: 0%;
@@ -31,6 +32,39 @@ iframe {
     width: 100%;
     overflow: hidden;
     transform: scale(1.4);
+    z-index: -1;
+}
+#admin-panel {
+    visibility: hidden;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-size: 0.8rem;
+    padding: 1rem 2rem;
+
+}
+.admin_background {
+    background-color: #551C6A;
+}
+#admin-panel h1 {
+    font-size: 1rem;
+}
+#admin-panel p {
+    display: inline-flex;
+}
+#admin-panel input {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1pt white;
+    width: 3rem;
+}
+#admin-panel button{
+    border: dotted white 1px;
+    color: white;
+    background-color: transparent;
 }
 #start-console {
     display: flex;
@@ -45,8 +79,7 @@ iframe {
     color: white;
     height: 5rem;
     width: 50%;
-    margin: 0 auto;
-    padding: 0;
+    margin: 0 1rem;
     background-color: #551C6A;
     border: none;
     border-radius: 10pt;
@@ -63,11 +96,4 @@ iframe {
 #volume-dial {
     margin-right: 5rem;
     transform: rotate(45deg);
-}
-.unselectable {
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
 }

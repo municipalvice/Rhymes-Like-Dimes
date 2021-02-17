@@ -9,10 +9,10 @@ MongoClient.connect(MongoConnection.mongo.connection, {
     .then( client => {
 
         app.set('view-engine', 'ejs');
-        console.log("Connection to scarifdb established.");
 
-        const db = client.db('star-wars-quotes');
-        const quotes = db.collection('quotes');
+        const db = client.db('doomdb');
+        const quotes = db.collection('rhymes');
+        console.log("Connection to doomdb established.");
 
         app.use(bodyParser.urlencoded({ extended: true}));
         app.use(bodyParser.json());
