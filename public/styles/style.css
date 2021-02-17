@@ -97,6 +97,23 @@ body {
     margin-right: 5rem;
     transform: rotate(115deg);
 }
-#speaker {
+#speaker-console {
     margin: 0rem 3.5rem;
+}
+#doom-badge {
+    position: relative;
+    float: right;
+    background-color: black;
+    border: solid #551C6A 3px;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    bottom: 6.3rem;
+    right: 1rem;
+}
+
+#doom-badge img{
+    max-height: 4rem;
+    margin-left: 0.8rem;
+    margin-top: 0.4rem;
 }
