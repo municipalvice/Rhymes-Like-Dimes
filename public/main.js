@@ -20,10 +20,17 @@ const doom_videos = [
     }
 ];
 
+var doom_video_id = "CRHyBwNtkLA";
+function getDoomVideoCode(){
+    var random_video = doom_videos[Math.floor(Math.random() * doom_videos.length)];
+
+    return random_video.shortCode
+}
+
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        videoId: 'CRHyBwNtkLA',
+        videoId: doom_video_id,
         events: {
             'onStateChange': getState
         }
@@ -48,7 +55,12 @@ start_button.addEventListener('click', _ => {
     }
 });
 channel_dial.addEventListener('click', _ => {
-    //TODO click to change to random Doom video
+    var randDeg = Math.floor(Math.random() * Math.floor(360));
+    doom_video_id = getDoomVideoCode();
+    player.loadVideoById({
+        videoId: doom_video_id
+    });
+    channel_dial.style.transform = `rotate(${randDeg}deg)`;
 });
 volume_dial.addEventListener('click', _ => {
    if (!player.isMuted()){
