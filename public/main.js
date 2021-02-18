@@ -1,6 +1,8 @@
 const start_button = document.getElementById('start-button');
 const channel_dial = document.getElementById('channel-dial');
 const volume_dial  = document.getElementById('volume-dial');
+const doom_badge = document.getElementById('doom-badge');
+const admin_panel = document.getElementById('admin-panel')
 const tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
@@ -79,4 +81,11 @@ volume_dial.addEventListener('click', _ => {
        player.unMute();
        volume_dial.style.transform = "rotate(115deg)";
    }
+});
+doom_badge.addEventListener('click', _ => {
+    if (admin_panel.style.display !== 'none') {
+        admin_panel.style.display = 'none';
+    } else {
+        admin_panel.style.display = 'flex';
+    }
 });
