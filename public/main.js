@@ -5,6 +5,10 @@ const doom_badge = document.getElementById('doom-badge');
 const tv_tube = document.getElementById('tv-tube');
 const admin_panel = document.getElementById('admin-panel');
 const tag = document.createElement('script');
+const change_channel_sfx = new Audio('sounds/change_channel.mp3');
+const change_volume_sfx = new Audio('sounds/change_volume.mp3');
+const vhs_in_sfx = new Audio('sounds/vhs_tape_in.mp3');
+const vhs_out_sfx = new Audio('sounds/vhs_tape_out.mp3');
 
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -56,33 +60,38 @@ function playVideo(){
 
 vhs_button.addEventListener('click', _ => {
     if (vhs_button.innerHTML === 'MM.. FOOD (The Movie)') {
+        vhs_in_sfx.play();
         player.loadVideoById({
             videoId: 'Ga-R6mxI5X4'
         });
         vhs_button.innerHTML = '&#11036';
         tv_tube.classList.remove("tv-static");
     } else {
-        player.pauseVideo();
+        vhs_out_sfx.play();
+        player.stopVideo();
         vhs_button.innerHTML = 'MM.. FOOD (The Movie)';
         tv_tube.classList.add("tv-static");
     }
 });
 channel_dial.addEventListener('click', _ => {
+    change_channel_sfx.play();
     var randDeg = Math.floor(Math.random() * Math.floor(360));
     doom_video_id = getDoomVideoCode();
     player.loadVideoById({
         videoId: doom_video_id
     });
     channel_dial.style.transform = `rotate(${randDeg}deg)`;
+    tv_tube.classList.remove('tv-static');
 });
 volume_dial.addEventListener('click', _ => {
-   if (!player.isMuted()){
-       player.mute();
-       volume_dial.style.transform = "rotate(-115deg)";
-   } else {
-       player.unMute();
-       volume_dial.style.transform = "rotate(115deg)";
-   }
+    change_volume_sfx.play();
+    if (!player.isMuted()) {
+        player.mute();
+        volume_dial.style.transform = "rotate(-115deg)";
+    } else {
+        player.unMute();
+        volume_dial.style.transform = "rotate(115deg)";
+    }
 });
 doom_badge.addEventListener('click', _ => {
     if (admin_panel.style.display !== 'none') {
