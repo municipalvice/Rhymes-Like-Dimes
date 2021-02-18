@@ -1,8 +1,9 @@
-const start_button = document.getElementById('start-button');
+const vhs_button = document.getElementById('vhs-button');
 const channel_dial = document.getElementById('channel-dial');
 const volume_dial  = document.getElementById('volume-dial');
 const doom_badge = document.getElementById('doom-badge');
-const admin_panel = document.getElementById('admin-panel')
+const tv_tube = document.getElementById('tv-tube');
+const admin_panel = document.getElementById('admin-panel');
 const tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
@@ -25,9 +26,6 @@ const doom_videos = [
     }, {
         shortCode: "uSxlZQUqVPY",
         songName: "Strange Ways"
-    }, {
-        shortCode: "Ga-R6mxI5X4",
-        songName: "MM.. FOOD The Movie (Part 1)"
     }
 ];
 
@@ -56,13 +54,17 @@ function playVideo(){
     player.playVideo();
 }
 
-start_button.addEventListener('click', _ => {
-    if (start_button.innerHTML === 'S T A R T') {
-        playVideo();
-        start_button.innerHTML = 'S T O P';
+vhs_button.addEventListener('click', _ => {
+    if (vhs_button.innerHTML === 'MM.. FOOD (The Movie)') {
+        player.loadVideoById({
+            videoId: 'Ga-R6mxI5X4'
+        });
+        vhs_button.innerHTML = '&#11036';
+        tv_tube.classList.remove("tv-static");
     } else {
         player.pauseVideo();
-        start_button.innerHTML = 'S T A R T';
+        vhs_button.innerHTML = 'MM.. FOOD (The Movie)';
+        tv_tube.classList.add("tv-static");
     }
 });
 channel_dial.addEventListener('click', _ => {
