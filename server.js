@@ -40,7 +40,7 @@ MongoClient.connect(MongoConnection.mongo.connection, {
 
         app.del('/rhymes', (request, response) => {
             rhymes.deleteOne(
-                {name: request.body.name}
+                {videoId: request.body.videoId}
             )
                 .then(result => {
                     if (result.deletedCount === 0) {

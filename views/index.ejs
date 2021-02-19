@@ -10,6 +10,7 @@
     <script src="/main.js" defer></script>
     <script>
         let doom_videos = <%- JSON.stringify(rhymes) %>;
+
         // console.log(doom_videos);
 
         function getRanDOOMVideo() {
@@ -47,7 +48,8 @@
             <ul class="rhymes">
                 <% for(var i = 0; i < rhymes.length; i++) { %>
                     <li class="rhymes">
-                        <%= rhymes[i].songName %> <button class="delete-skull"> &#9760; </button>
+                        <%= rhymes[i].songName %>
+                        <button class="delete-video-id" value=<%= rhymes[i].videoId %>>X</button>
                     </li>
                 <% } %>
             </ul>
