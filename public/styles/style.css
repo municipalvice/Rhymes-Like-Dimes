@@ -19,7 +19,7 @@ body {
     margin: 0 3rem;
     overflow: hidden;
     border-radius: 20%;
-    border: solid 3px #551C6A;
+    border: solid 4px #551C6A;
 }
 .tv-static {
     background-image: url("https://live.staticflickr.com/373/32541144615_a57b24630b_b.jpg");
@@ -44,15 +44,18 @@ body {
     height: 100%;
     width: 100%;
     color: white;
-    font-size: 0.8rem;
-    padding: 1rem 2rem;
+    font-size: 1rem;
+    padding: 2rem 3rem;
 
 }
 .admin_background {
     background-color: #551C6A;
 }
 #admin-panel h1 {
-    font-size: 1rem;
+    font-size: 1.7rem;
+}
+#admin-panel h2 {
+    font-size: 1.2rem;
 }
 #admin-panel p {
     display: inline-flex;
@@ -67,6 +70,9 @@ body {
     border: dotted white 1px;
     color: white;
     background-color: transparent;
+}
+.delete-skull {
+    font-size: 1.5rem;
 }
 #start-console {
     display: flex;

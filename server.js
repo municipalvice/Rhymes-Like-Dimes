@@ -1,20 +1,21 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const MongoConnection = require('./config.js');
+const bodyParser = require('body-parser');
+app.set('view-engine', 'ejs');
 
 MongoClient.connect(MongoConnection.mongo.connection, {
-    useUnifiedTopology: true })
-    .then( client => {
+    useUnifiedTopology: true
+})
+    .then(client => {
 
-        app.set('view-engine', 'ejs');
 
         const db = client.db('doomdb');
         const rhymes = db.collection('rhymes');
         console.log("Connection to doomdb established.");
 
-        app.use(bodyParser.urlencoded({ extended: true}));
+        app.use(bodyParser.urlencoded({extended: true}));
         app.use(bodyParser.json());
         app.use(express.static(__dirname + '/public/'));
 
@@ -22,7 +23,7 @@ MongoClient.connect(MongoConnection.mongo.connection, {
 
             rhymes.find().toArray()
                 .then(result => {
-                    response.render('index.ejs', { rhymes: result });
+                    response.render('index.ejs', {rhymes: result});
                     console.log(result);
                 })
                 .catch(error => console.error(error));
@@ -43,9 +44,9 @@ MongoClient.connect(MongoConnection.mongo.connection, {
             )
                 .then(result => {
                     if (result.deletedCount === 0) {
-                        return response.json('No More Vader');
+                        return response.json('No more videos to delete');
                     }
-                    response.json('Deleted Vader');
+                    response.json('Deleted video');
                 })
                 .catch(error => console.log(error));
         });
@@ -55,4 +56,6 @@ MongoClient.connect(MongoConnection.mongo.connection, {
             console.log('The server is up!');
         });
     })
-    .catch( error => { console.error(error) });
+    .catch(error => {
+        console.error(error)
+    });

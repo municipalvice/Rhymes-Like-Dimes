@@ -8,6 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <script src="/main.js" defer></script>
+    <script>
+        let doom_videos = <%- JSON.stringify(rhymes) %>;
+        // console.log(doom_videos);
+
+        function getRanDOOMVideo() {
+            return doom_videos[Math.floor(Math.random() * doom_videos.length)];
+        }
+
+        let player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -29,7 +47,7 @@
             <ul class="rhymes">
                 <% for(var i = 0; i < rhymes.length; i++) { %>
                     <li class="rhymes">
-                        <span><%= rhymes[i].songName %></span>
+                        <%= rhymes[i].songName %> <button class="delete-skull"> &#9760; </button>
                     </li>
                 <% } %>
             </ul>
