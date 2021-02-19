@@ -126,6 +126,6 @@ doom_badge.addEventListener('click', _ => {
     if (admin_panel.style.display !== 'none') {
         admin_panel.style.display = 'none';
     } else {
-        admin_panel.style.display = 'flex';
+        admin_panel.style.display = 'inline';
     }
 });

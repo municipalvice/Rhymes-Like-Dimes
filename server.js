@@ -22,8 +22,8 @@ MongoClient.connect(MongoConnection.mongo.connection, {
 
             rhymes.find().toArray()
                 .then(result => {
-                    response.render('index.ejs', { quotes: result });
-                    // console.log(result);
+                    response.render('index.ejs', { rhymes: result });
+                    console.log(result);
                 })
                 .catch(error => console.error(error));
             // console.log("Current directory: " + __dirname);

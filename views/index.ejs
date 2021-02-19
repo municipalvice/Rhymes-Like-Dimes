@@ -14,14 +14,26 @@
 <section id="tv-tube" class="tv-static">
     <article id="player"></article>
     <article id="admin-panel" class="admin_background">
-        <h1>Admin Panel</h1>
-        <form action="/rhymes" method="post">
-            <p>Song Name:</p><input type="text" name="songName">
-            <p>Video Code:</p><input type="text" name="videoId">
-            <p>Start:</p><input type="text" name="startSeconds">
-            <p>End:</p><input type="text" name="endSeconds">
-            <button id="create-button" type="submit">Create</button>
-        </form>
+        <section>
+            <h1>Admin Panel</h1>
+            <form action="/rhymes" method="post">
+                <p>Song Name:</p><input type="text" name="songName">
+                <p>Video Code:</p><input type="text" name="videoId">
+                <p>Start:</p><input type="text" name="startSeconds">
+                <p>End:</p><input type="text" name="endSeconds">
+                <button id="create-button" type="submit">Create</button>
+            </form>
+        </section>
+        <section>
+            <h2>Current Videos</h2>
+            <ul class="rhymes">
+                <% for(var i = 0; i < rhymes.length; i++) { %>
+                    <li class="rhymes">
+                        <span><%= rhymes[i].songName %></span>
+                    </li>
+                <% } %>
+            </ul>
+        </section>
     </article>
 </section>
 

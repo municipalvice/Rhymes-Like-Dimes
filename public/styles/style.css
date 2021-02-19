@@ -37,7 +37,7 @@ body {
     z-index: -1;
 }
 #admin-panel {
-    display: inline;
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
