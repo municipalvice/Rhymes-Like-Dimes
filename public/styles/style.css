@@ -33,7 +33,7 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    transform: scale(1.4);
+    transform: scale(1.45);
     z-index: -1;
 }
 #admin-panel {

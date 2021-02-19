@@ -11,48 +11,53 @@ const vhs_in_sfx = new Audio('sounds/vhs_tape_in.mp3');
 const vhs_out_sfx = new Audio('sounds/vhs_tape_out.mp3');
 
 tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
+let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 const doom_videos = [
     {
-        shortCode: "CRHyBwNtkLA",
+        videoId: "CRHyBwNtkLA",
         songName: "Doomsday",
+        startSeconds: 6,
+        endSeconds: 302
+
     }, {
-        shortCode: "rpaonSDPw7Y",
-        songName: "Accordion"
+        videoId: "rpaonSDPw7Y",
+        songName: "Accordion",
+        startSeconds: 1,
+        endSeconds: 119
     }, {
-        shortCode: "Pb1E5XNheqw",
-        songName: "Questions"
+        videoId: "Pb1E5XNheqw",
+        songName: "Questions",
+        startSeconds: 15,
+        endSeconds: 187
     }, {
-        shortCode: "h69FSgua80A",
-        songName: "One Beer"
+        videoId: "h69FSgua80A",
+        songName: "One Beer",
+        endSeconds: 143
     }, {
-        shortCode: "uSxlZQUqVPY",
-        songName: "Strange Ways"
+        videoId: "uSxlZQUqVPY",
+        songName: "Strange Ways",
+        startSeconds: 1,
+        endSeconds: 110
     }
 ];
 
-var doom_video_id = "CRHyBwNtkLA";
-
-function getDoomVideoCode() {
-    var random_video = doom_videos[Math.floor(Math.random() * doom_videos.length)];
-
-    return random_video.shortCode
+function getRanDOOMVideo() {
+    return doom_videos[Math.floor(Math.random() * doom_videos.length)];
 }
 
-var player;
+let player;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        videoId: doom_video_id,
         events: {
             'onStateChange': getState
         }
     });
 }
 
-var state;
+let state;
 
 function getState() {
     state = player.getPlayerState();
@@ -69,12 +74,14 @@ function playVHSTape() {
     setTimeout(
         function () {
             player.loadVideoById({
-                    videoId: 'Ga-R6mxI5X4'
+                    videoId: 'Ga-R6mxI5X4',
+                    startSeconds: 0,
+                    endSeconds: 1661
                 },
                 setTimeout(function () {
                         tv_tube.classList.remove("tv-static")
                     },
-                    1000
+                    750
                 )
             );
         },
@@ -95,11 +102,8 @@ vhs_button.addEventListener('click', _ => {
 });
 channel_dial.addEventListener('click', _ => {
     change_channel_sfx.play();
-    var randDeg = Math.floor(Math.random() * Math.floor(360));
-    doom_video_id = getDoomVideoCode();
-    player.loadVideoById({
-        videoId: doom_video_id
-    });
+    const randDeg = Math.floor(Math.random() * Math.floor(360));
+    player.loadVideoById(getRanDOOMVideo());
     channel_dial.style.transform = `rotate(${randDeg}deg)`;
     tv_tube.classList.remove('tv-static');
 });
