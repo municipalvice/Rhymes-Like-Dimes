@@ -11,7 +11,7 @@ const vhs_in_sfx = new Audio('sounds/vhs_tape_in.mp3');
 const vhs_out_sfx = new Audio('sounds/vhs_tape_out.mp3');
 
 tag.src = "https://www.youtube.com/iframe_api";
-let firstScriptTag = document.getElementsByTagName('script')[0];
+const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 const doom_videos = [
@@ -30,16 +30,16 @@ const doom_videos = [
         videoId: "Pb1E5XNheqw",
         songName: "Questions",
         startSeconds: 15,
-        endSeconds: 187
+        endSeconds: 184
     }, {
         videoId: "h69FSgua80A",
         songName: "One Beer",
-        endSeconds: 143
+        endSeconds: 133
     }, {
         videoId: "uSxlZQUqVPY",
         songName: "Strange Ways",
         startSeconds: 1,
-        endSeconds: 110
+        endSeconds: 100
     }
 ];
 
@@ -52,43 +52,44 @@ let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         events: {
-            'onStateChange': getState
+            'onStateChange': onPlayerStateChange
         }
     });
 }
 
 let state;
 
-function getState() {
-    state = player.getPlayerState();
-}
+function onPlayerStateChange(change) {
+    state = change.data;
 
-function playVideo() {
-    player.playVideo();
+    switch (state) {
+        //if player state is ended
+        case 0:
+            tv_tube.classList.add('tv-static');
+            break;
+        case 1:
+            vibrateSpeaker();
+            break;
+        default:
+            break;
+    }
 }
 
 function playVHSTape() {
     vhs_in_sfx.play();
     vhs_button.innerHTML = '&#11036';
 
-    setTimeout(
-        function () {
-            player.loadVideoById({
-                    videoId: 'Ga-R6mxI5X4',
-                    startSeconds: 0,
-                    endSeconds: 1661
-                },
-                setTimeout(function () {
-                        tv_tube.classList.remove("tv-static")
-                    },
-                    750
-                )
-            );
-        },
-        4500
-    );
+    player.loadVideoById({
+        videoId: 'Ga-R6mxI5X4',
+        startSeconds: 0,
+        endSeconds: 1661
+    });
+    tv_tube.classList.remove("tv-static")
 }
 
+function vibrateSpeaker() {
+    //TODO: animate speaker
+}
 
 vhs_button.addEventListener('click', _ => {
     if (vhs_button.innerHTML === 'MM.. FOOD (The Movie)') {
@@ -105,7 +106,11 @@ channel_dial.addEventListener('click', _ => {
     const randDeg = Math.floor(Math.random() * Math.floor(360));
     player.loadVideoById(getRanDOOMVideo());
     channel_dial.style.transform = `rotate(${randDeg}deg)`;
-    tv_tube.classList.remove('tv-static');
+    setTimeout(function () {
+        tv_tube.classList.remove('tv-static')
+    },
+        300
+        )
 });
 volume_dial.addEventListener('click', _ => {
     change_volume_sfx.play();
