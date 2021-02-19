@@ -11,17 +11,16 @@ MongoClient.connect(MongoConnection.mongo.connection, {
         app.set('view-engine', 'ejs');
 
         const db = client.db('doomdb');
-        const quotes = db.collection('rhymes');
+        const rhymes = db.collection('rhymes');
         console.log("Connection to doomdb established.");
 
         app.use(bodyParser.urlencoded({ extended: true}));
         app.use(bodyParser.json());
         app.use(express.static(__dirname + '/public/'));
 
-        // Fix: Unresolved function or method get()
         app.get('/', (request, response) => {
 
-            quotes.find().toArray()
+            rhymes.find().toArray()
                 .then(result => {
                     response.render('index.ejs', { quotes: result });
                     // console.log(result);
@@ -29,30 +28,17 @@ MongoClient.connect(MongoConnection.mongo.connection, {
                 .catch(error => console.error(error));
             // console.log("Current directory: " + __dirname);
         });
-        app.post('/quotes', (request, response) => {
-            quotes.insertOne(request.body)
+
+        app.post('/rhymes', (request, response) => {
+            rhymes.insertOne(request.body)
                 .then(result => {
                     response.redirect("/");
                 })
                 .catch(error => console.error(error))
         });
-        app.put('/quotes', (request, response) => {
-            quotes.findOneAndUpdate(
-                { name: "Yoda"},
-                { $set:
-                        {
-                            name: request.body.name,
-                            quote: request.body.quote
-                        }
-                },
-                {upsert: true}
-            )
-            .then(result => {
-                response.json('Success');
-            }).catch(error => console.log(error));
-        });
-        app.del('/quotes', (request, response) => {
-            quotes.deleteOne(
+
+        app.del('/rhymes', (request, response) => {
+            rhymes.deleteOne(
                 {name: request.body.name}
             )
                 .then(result => {
@@ -62,7 +48,7 @@ MongoClient.connect(MongoConnection.mongo.connection, {
                     response.json('Deleted Vader');
                 })
                 .catch(error => console.log(error));
-        })
+        });
 
         app.listen(3000, function () {
             console.log('Listening on port 3000');

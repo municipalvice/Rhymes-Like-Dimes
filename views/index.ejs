@@ -11,36 +11,38 @@
 </head>
 <body>
 
-    <section id="tv-tube" class="tv-static">
-        <article id="player"></article>
-        <article id="admin-panel" class="admin_background">
-            <h1>Admin Panel</h1>
-            <form action="/rhymes" method="post">
-                <p>Cheat Code:</p><input type="text" name="youtube-shortcode">
-                <p>Start:</p><input type="text" name="start">
-                <p>End:</p><input type="text" name="end">
-                <button id="create-button" type="submit">Create</button>
-            </form>
-        </article>
-    </section>
+<section id="tv-tube" class="tv-static">
+    <article id="player"></article>
+    <article id="admin-panel" class="admin_background">
+        <h1>Admin Panel</h1>
+        <form action="/rhymes" method="post">
+            <p>Song Name:</p><input type="text" name="songName">
+            <p>Video Code:</p><input type="text" name="videoId">
+            <p>Start:</p><input type="text" name="startSeconds">
+            <p>End:</p><input type="text" name="endSeconds">
+            <button id="create-button" type="submit">Create</button>
+        </form>
+    </article>
+</section>
 
-    <section id="start-console">
-        <article id="channel-dial" >
-            <img class="dial" src="images/dial_purple.svg" alt="channel dial"/>
-        </article>
+<section id="start-console">
+    <article id="channel-dial">
+        <img class="dial" src="images/dial_purple.svg" alt="channel dial"/>
+    </article>
 
-        <button id="vhs-button">MM.. FOOD (The Movie)</button>
+    <button id="vhs-button">MM.. FOOD (The Movie)</button>
 
-        <article id="volume-dial">
-            <img class="dial" src="images/dial_purple.svg" alt="volume dial"/>
-        </article>
-    </section>
-    <section id="speaker-console">
-        <img id="speaker" src="images/doom_speaker.svg" alt="speaker art">
-        <article id="doom-badge">
-            <img src="images/doom_pixel_icon.png" alt="MF Doom Pixel Icon">
-        </article>
-    </section>
+    <article id="volume-dial">
+        <img class="dial" src="images/dial_purple.svg" alt="volume dial"/>
+    </article>
+</section>
+
+<section id="speaker-console">
+    <img id="speaker" src="images/doom_speaker.svg" alt="speaker art">
+    <article id="doom-badge">
+        <img src="images/doom_pixel_icon.png" alt="MF Doom Pixel Icon">
+    </article>
+</section>
 
 </body>
 </html>
