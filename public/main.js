@@ -3,7 +3,6 @@ const channel_dial = document.getElementById('channel-dial');
 const volume_dial = document.getElementById('volume-dial');
 const doom_badge = document.getElementById('doom-badge');
 const tv_tube = document.getElementById('tv-tube');
-const admin_panel = document.getElementById('admin-panel');
 const create_button = document.getElementById('create-button');
 const delete_buttons = document.querySelectorAll('.delete-video-id');
 const change_channel_sfx = new Audio('sounds/change_channel.mp3');
@@ -15,6 +14,30 @@ const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let doom_videos;
+
+fetch('/', {
+    method: 'get'
+}).then(result => {
+    if (result.ok) doom_videos = JSON.stringify(result);
+}).catch(console.error);
+
+// console.log(doom_videos);
+
+function getRanDOOMVideo() {
+    return doom_videos[Math.floor(Math.random() * doom_videos.length)];
+}
+
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
 
 let state;
 
@@ -59,60 +82,59 @@ function playVHSTape() {
 function vibrateSpeaker() {
     //TODO: animate speaker
 }
-function deleteVideo() {
+
+function deleteVideo(event) {
+    console.log(event.target.value);
+    console.log(event.currentTarget.value);
     fetch('/rhymes', {
         method: 'delete',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            videoId: this.value
+            videoId: event.target.value
         })
     })
-        .then(result => {
-            if (result.ok) return result.json();
-            window.location.reload(true);
-        })
         .catch(console.error);
-};
+}
 
-vhs_button.addEventListener('click', _ => {
-    if (vhs_button.innerHTML === 'MM.. FOOD (The Movie)') {
+vhs_button.addEventListener('click', event => {
+    if (event.target.innerHTML === 'MM.. FOOD (The Movie)') {
         playVHSTape();
     } else {
         vhs_out_sfx.play();
         player.stopVideo();
-        vhs_button.innerHTML = 'MM.. FOOD (The Movie)';
+        event.target.innerHTML = 'MM.. FOOD (The Movie)';
         tv_tube.classList.add("tv-static");
     }
 });
-channel_dial.addEventListener('click', _ => {
+channel_dial.addEventListener('click', event => {
     change_channel_sfx.play();
     const randDeg = Math.floor(Math.random() * Math.floor(360));
     player.loadVideoById(getRanDOOMVideo());
-    channel_dial.style.transform = `rotate(${randDeg}deg)`;
+    event.target.style.transform = `rotate(${randDeg}deg)`;
     setTimeout(function () {
             tv_tube.classList.remove('tv-static')
         },
         300
     )
 });
-volume_dial.addEventListener('click', _ => {
+volume_dial.addEventListener('click', event => {
     change_volume_sfx.play();
     if (!player.isMuted()) {
         player.mute();
-        volume_dial.style.transform = "rotate(-115deg)";
+        event.target.style.transform = "rotate(-115deg)";
     } else {
         player.unMute();
-        volume_dial.style.transform = "rotate(115deg)";
+        event.target.style.transform = "rotate(115deg)";
     }
 });
-doom_badge.addEventListener('click', _ => {
-    if (admin_panel.style.display === 'none') {
-        admin_panel.style.display = 'inline';
+doom_badge.addEventListener('click', event => {
+    if (event.target.style.display === 'none') {
+        event.target.style.display = 'inline';
     } else {
-        admin_panel.style.display = 'none';
+        event.target.style.display = 'none';
     }
 });
-create_button.addEventListener('click', _ => {
+create_button.addEventListener('click', event => {
     window.location.reload(true);
 });
 
